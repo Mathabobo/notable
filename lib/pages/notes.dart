@@ -3,11 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:notable/appstyle.dart';
-import 'package:notable/services/auth_service.dart';
+// import 'package:notable/services/auth_service.dart';
 import 'package:notable/widgets/notetile.dart';
 import 'package:notable/services/database_service.dart';
-import 'package:notable/screens/note_screen.dart';
+import 'package:notable/pages/note_screen.dart';
 import 'package:notable/widgets/mydrawer.dart';
+
+import '../constants.dart';
 
 class Notes extends StatefulWidget {
   const Notes({super.key});
@@ -146,7 +148,7 @@ class NotesState extends State<Notes> {
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               drawer: const MyDrawer(),
 
-              //notes
+              //*notes
               body: CustomScrollView(
                 slivers: [
                   isMultiSelectionEnabled
@@ -228,15 +230,26 @@ class NotesState extends State<Notes> {
                             actions: [
                               IconButton(
                                 onPressed: () {
-                                  AuthService().signOut();
+                                  setState(() {
+                                    isDarkMode = !isDarkMode;
+                                  });
                                 },
-                                icon: const Icon(Icons.logout,
+                                icon: Icon(
+                                    isDarkMode
+                                        ? Icons.light_mode_rounded
+                                        : Icons.dark_mode_rounded,
                                     color: Colors.white70),
                               ),
-                              // ignore: prefer_const_constructors
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: const CircleAvatar(
+                              // IconButton(
+                              //   onPressed: () {
+                              //     AuthService().signOut();
+                              //   },
+                              //   icon: const Icon(Icons.logout,
+                              //       color: Colors.white70),
+                              // ),
+                              const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: CircleAvatar(
                                   radius: 17,
                                   backgroundImage:
                                       AssetImage('lib/images/girla.jpeg'),
@@ -246,7 +259,7 @@ class NotesState extends State<Notes> {
                           ),
                         ),
 
-                  //listview
+                  //*listview
                   streamSnapshot.data!.docs.isEmpty
                       ? SliverPadding(
                           padding: const EdgeInsets.symmetric(vertical: 250),

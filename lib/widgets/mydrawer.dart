@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notable/screens/notes.dart';
-import 'package:notable/screens/app_settings.dart';
-import 'package:notable/screens/trash.dart';
+import 'package:notable/pages/notes.dart';
+import 'package:notable/pages/app_settings.dart';
+import 'package:notable/pages/trash.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({

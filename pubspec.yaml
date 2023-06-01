@@ -41,7 +41,7 @@ dependencies:
   google_sign_in: ^5.4.2
   cloud_firestore: ^4.1.0
   intl: ^0.18.0
-  flex_color_scheme: ^6.1.2
+  flex_color_scheme: ^7.0.5
   google_fonts: ^4.0.1
 
 dev_dependencies:

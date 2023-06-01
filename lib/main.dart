@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:notable/screens/login.dart';
-import 'package:notable/screens/notes.dart';
+import 'package:notable/constants.dart';
+import 'package:notable/pages/login.dart';
+import 'package:notable/pages/notes.dart';
 import 'package:notable/services/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:notable/screens/note_screen.dart';
+import 'package:notable/pages/note_screen.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:notable/screens/app_settings.dart';
-import 'package:notable/screens/trash.dart';
+import 'package:notable/pages/app_settings.dart';
+import 'package:notable/pages/trash.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,12 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      // This theme was made for FlexColorScheme version 6.1.1. Make sure
-      // you use same or higher version, but still same major version. If
-      // you use a lower version, some properties may not be supported. In
-      // that case you can also remove them after copying the theme to your app.
+
       theme: FlexThemeData.light(
+        useMaterial3: true,
         scheme: FlexScheme.indigo,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 9,
@@ -41,6 +39,8 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.notoSans().fontFamily,
       ),
       darkTheme: FlexThemeData.dark(
+        useMaterial3: true,
+
         scheme: FlexScheme.indigo,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 15,
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
       ),
       // If you do not have a themeMode switch, uncomment this line
       // to let the device system mode control the theme mode:
-      themeMode: ThemeMode.dark,
+      themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
       initialRoute: '/',
       routes: {
         '/': (context) => AuthService().handleAuthState(),
